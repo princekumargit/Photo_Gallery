@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div className="body">
       <Navbar />
-      <Grid photos={photos} />
+      <Grid photos={photos} setUpdateUI = {setUpdateUI} />
       <Button setUpdateUI={setUpdateUI} />
     </div>
   );
