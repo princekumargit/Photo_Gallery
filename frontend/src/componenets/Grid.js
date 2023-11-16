@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Grid = ({ photos, setUpdateUI }) => {
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const t = localStorage.getItem("token");
+    setToken(t);
+  }, []);
   const handleDelete = async (id) => {
+    console.log(token);
     try {
-      await axios.delete(`http://localhost:5000/api/delete/${id}`);
+      console.log(id);
+      const res = await axios.delete(`http://localhost:5000/api/delete/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Set the Authorization header with 'Bearer' and your token
+        },
+      });
       setUpdateUI((prev) => !prev); // Trigger UI update
     } catch (error) {
-      console.error(error);
+      console.error(error, "gggggg");
     }
   };
 

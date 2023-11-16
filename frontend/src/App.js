@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "./componenets/Navbar";
-import Button from "./componenets/Button";
-import Grid from "./componenets/Grid";
-import axios from "axios";
-
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 const App = () => {
-  const [photos, setPhotos] = useState([]);
-  const [updateUI, setUpdateUI] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/get")
-      .then((res) => {
-        console.log(res.data);
-        setPhotos(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [updateUI]);
   return (
-    <div className="body">
-      <Navbar />
-      <Grid photos={photos} setUpdateUI = {setUpdateUI} />
-      <Button setUpdateUI={setUpdateUI} />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 };
 

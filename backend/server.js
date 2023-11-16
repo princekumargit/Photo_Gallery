@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const UploadRoute = require("./routes/uploadroute");
+const routerAuth = require("./routes/authentication");
 
 const app = express();
 
@@ -26,6 +27,7 @@ mongoose
   });
 
 app.use(UploadRoute);
+app.use(routerAuth);
 
 app.listen(PORT, () => {
   console.log(`server started at port: ${PORT}`);
