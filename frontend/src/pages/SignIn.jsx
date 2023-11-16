@@ -20,6 +20,10 @@ const SignIn = () => {
         localStorage.setItem("token", res.data.token);
         navigate("/");
         console.log(res.data.message);
+      } else if (res.status === 205) {
+        alert("User Not Found");
+      } else if (res.status === 206) {
+        alert("Invalid Password");
       } else {
         console.log(res.data.message);
       }

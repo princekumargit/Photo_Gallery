@@ -12,7 +12,7 @@ routerAuth.post("/api/register", async (req, res) => {
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(400).json({ message: "user allready exists" });
+      res.status(202).json({ message: "user allready exists" });
     }
     const round = 10;
     const hashedPass = await bcrypt.hash(password, round);
@@ -32,13 +32,13 @@ routerAuth.post("/api/login", async (req, res) => {
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      res.status(404).json({ message: "user not found" });
+      res.status(205).json({ message: "user not found" });
     }
 
     const isValid = await bcrypt.compare(password, existingUser.password);
 
     if (!isValid) {
-      res.status(401).json({ message: "invalid password" });
+      res.status(206).json({ message: "invalid password" });
     }
 
     const secretKey = process.env.KEY;

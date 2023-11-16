@@ -24,6 +24,8 @@ const SignUp = () => {
       if (res.status === 201) {
         console.log(res.data.message);
         navigate("/signin");
+      } else if (res.status === 202) {
+        alert("User Allready Exists");
       } else {
         console.log(res.data.message);
       }
